@@ -1,9 +1,11 @@
 import { Badge } from "@material-ui/core";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
+import Button from "@mui/material/Button";
 import React from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   height: 60px;
@@ -68,6 +70,7 @@ const MenuItem = styled.div`
 `;
 
 const Navbar = () => {
+  const navigate = useNavigate();
   return (
     <Container>
       <Wrapper>
@@ -79,27 +82,29 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>LAMA.</Logo>
+          
+          
+          <Logo onClick={()=>navigate("/")} style={{cursor:"pointer"}} >LAMA.</Logo>
         </Center>
         <Right>
           <MenuItem>
-            <NavLink to="/register">REGISTER</NavLink>
+            <NavLink to="/register">
+              <Button variant="outlined">Register</Button>
+            </NavLink>
           </MenuItem>
 
           <MenuItem>
-            <NavLink to="/login">SIGN IN</NavLink>
-            
-          </MenuItem>
-          <MenuItem>
-            
-            <NavLink to="/cart">
+            <NavLink to="/login">
+              <Button variant="outlined" >Sign In</Button>
               
-            <Badge badgeContent={4} color="primary">
-              <ShoppingCartOutlined />
-            </Badge>
-    </NavLink>
-
-
+            </NavLink>
+          </MenuItem>
+          <MenuItem>
+            <NavLink to="/cart">
+              <Badge badgeContent={4} color="primary">
+                <ShoppingCartOutlined />
+              </Badge>
+            </NavLink>
           </MenuItem>
         </Right>
       </Wrapper>
